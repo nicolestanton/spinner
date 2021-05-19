@@ -9,25 +9,3 @@ export function Spinner(props) {
     </div>
   );
 }
-
-// export function StaticSpinner() {
-//   return (
-//     <div className="spinner static">
-//       <span className="spinner-value">0%</span>
-//       <div className="spinner-ring"></div>
-//     </div>
-//   );
-// }
-
-// export function CompletedSpinner() {
-//   return (
-//     <div className="spinner static">
-//       <span className="spinner-value">100%</span>
-//       <div className="spinner-ring completed"></div>
-//     </div>
-//   );
-// }
-
-// className={
-//     spinnerValue === 100 ? "spinner-ring completed" : "spinner-ring"
-//   }

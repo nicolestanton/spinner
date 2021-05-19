@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Components/Button";
-import { Spinner, StaticSpinner, CompletedSpinner } from "./Components/Spinner";
+import { Spinner } from "./Components/Spinner";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -15,6 +15,7 @@ function App() {
 
   function stopSpinner() {
     setLoading(false);
+    setSpinnerComplete(false);
     setPercentage(0);
     console.log("spinner stopped");
   }
@@ -23,18 +24,24 @@ function App() {
     const interval = setInterval(() => {
       if (percentage === 100) {
         console.log("percentage", percentage);
-
         setPercentage(100);
         setLoading(false);
-        return;
       } else {
         setPercentage(percentage + 1);
+        console.log("percent line 31", percentage);
       }
     }, 100);
 
-    if (loading === false && percentage === 100) {
+    // when spinner gets stopped by button press set it back to 0
+    if (loading === false) {
       setPercentage(0);
+      console.log("percent line 41", percentage);
+    }
+
+    if (percentage === 100) {
       setSpinnerComplete(true);
+      setPercentage(0);
+      setLoading(false);
     }
 
     return () => {
@@ -56,7 +63,7 @@ function App() {
 
   return (
     <div className="app">
-      {loading === true && spinnerComplete === false ? (
+      {loading === true ? (
         <div className="spinner-container active ">
           <Spinner
             spinnerValue={percentage}
