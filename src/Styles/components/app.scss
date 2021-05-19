@@ -14,6 +14,11 @@
     flex-direction: column;
     align-items: center;
 
+    h3 {
+      color: white;
+      font-family: Arial;
+    }
+
     .active {
       @keyframes spin {
         0% {

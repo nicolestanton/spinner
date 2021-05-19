@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   .spinner-ring {
-    border: 10px solid #34db39; /* Main Cirle */
-    border-top: 10px solid #34db39; /* Moving Segment */
+    border: 10px solid #2e3e5f; /* Main Cirle */
+    border-top: 10px solid #2e3e5f; /* Moving Segment */
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -20,6 +20,11 @@
   .active {
     animation: spin 2s linear infinite;
     border: 10px solid #2e3e5f; /* Main Cirle */
+    border-top: 10px solid #34db39; /* Moving Segment */
+  }
+
+  .complete {
+    border: 10px solid #34db39; /* Main Cirle */
     border-top: 10px solid #34db39; /* Moving Segment */
   }
 }
