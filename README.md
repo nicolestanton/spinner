@@ -1,6 +1,6 @@
 # Loading Spinner
 
-This project was created using React.js and Webpack.
+This project was created using React.js, Webpack & SCSS.
 
 ## Available Scripts
 
