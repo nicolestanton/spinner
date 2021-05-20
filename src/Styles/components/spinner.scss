@@ -1,14 +1,12 @@
 .spinner-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   h3 {
-    color: white;
-    font-family: Arial;
+    color: black;
+    font-family: "Lato", sans-serif;
+    padding-top: 100px;
   }
 
   .active {
+    animation: spin 2s linear infinite;
     @keyframes spin {
       0% {
         transform: rotate(0deg);
@@ -22,30 +20,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .spinner-ring {
-      border: 10px solid #2e3e5f; /* Main Cirle */
-      border-top: 10px solid #2e3e5f; /* Moving Segment */
+      border: 10px solid #eaeaea;
+      border-top: 10px solid #6396ff;
       border-radius: 50%;
-      width: 120px;
-      height: 120px;
-    }
-    .spinner-value {
-      padding-bottom: 16px;
-      font-family: Arial;
-      color: white;
-      margin: 0 auto;
-      font-size: 20px;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
     }
 
-    .active {
-      animation: spin 2s linear infinite;
-      border: 10px solid #2e3e5f; /* Main Cirle */
-      border-top: 10px solid #34db39; /* Moving Segment */
+    .spinner-value {
+      color: black;
+      margin: 0 auto;
+      font-size: 62px;
+      display: flex;
+      font-family: "Lato", sans-serif;
+      margin-top: -140px;
+
+      .percentage-sign {
+        font-size: 22px;
+        color: #d2d2d2;
+        margin-top: 10px;
+      }
     }
 
     .complete {
-      border: 10px solid #34db39; /* Main Cirle */
-      border-top: 10px solid #34db39; /* Moving Segment */
+      border: 10px solid #6396ff;
+      border-top: 10px solid #6396ff;
     }
   }
 }

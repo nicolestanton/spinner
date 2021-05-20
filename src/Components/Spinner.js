@@ -6,14 +6,15 @@ export function Spinner(props) {
     "active"}`;
   return (
     <div className="spinner-container">
-      <h3 data-testid="spinner-state">
-        {isComplete ? "Completed" : isLoading ? "Loading" : "Waiting"}
-      </h3>
       <div className="spinner" data-testid="loading-spinner">
-        <span data-testid="spinner-value" className="spinner-value">
-          {percentage}%
-        </span>
         <div className={classes}></div>
+        <span data-testid="spinner-value" className="spinner-value">
+          {percentage}
+          <span className="percentage-sign">%</span>
+        </span>
+        <h3 data-testid="spinner-state">
+          {isComplete ? "Completed!" : isLoading ? "Loading..." : "Waiting"}
+        </h3>
       </div>
     </div>
   );

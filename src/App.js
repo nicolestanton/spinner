@@ -26,7 +26,7 @@ export function reducer(state, action) {
       return {
         ...state,
         percentage: payload === undefined ? state.percentage + 1 : payload,
-        isComplete: payload === 100 ? true : false
+        isComplete: state.percentage === 100 ? true : false
       };
     }
     case "IS_COMPLETE": {
@@ -46,19 +46,17 @@ function App() {
 
   useEffect(() => {
     let interval;
-
     if (state.isLoading) {
       interval = setInterval(() => {
         dispatch({
           type: "UPDATE_PERCENTAGE"
         });
       }, 100);
-    } else {
-      clearInterval(interval);
     }
-
     return () => clearInterval(interval);
   }, [state.isLoading]);
+
+  console.log("__", state.isComplete, state.isLoading, state.percentage);
 
   return (
     <div className="app">
@@ -67,6 +65,7 @@ function App() {
         isComplete={state.isComplete}
         isLoading={state.isLoading}
       />
+      <div className="seperator"></div>
       <Button
         onClick={() => dispatch({ type: "TOGGLE_LOADING" })}
         text={state.isLoading ? "Stop" : "Start"}
