@@ -12,7 +12,8 @@
   "scripts": {
     "start": "webpack serve --open",
     "test": "jest",
-    "create": "webpack"
+    "create": "webpack",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",

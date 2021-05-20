@@ -56,8 +56,6 @@ function App() {
     return () => clearInterval(interval);
   }, [state.isLoading]);
 
-  console.log("__", state.isComplete, state.isLoading, state.percentage);
-
   return (
     <div className="app">
       <Spinner
