@@ -4,7 +4,9 @@ function Button(props) {
   const { text, onClick } = props;
   return (
     <div className="button">
-      <button onClick={onClick}>{text}</button>
+      <button data-testid="button-text" onClick={onClick}>
+        {text}
+      </button>
     </div>
   );
 }

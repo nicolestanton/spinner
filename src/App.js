@@ -1,77 +1,76 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import Button from "./Components/Button";
 import { Spinner } from "./Components/Spinner";
 
+export const initialState = {
+  isLoading: false,
+  percentage: 0,
+  isComplete: false
+};
+
+export function reducer(state, action) {
+  switch (action.type) {
+    case "TOGGLE_LOADING": {
+      //toggle starting and stopping of spinner
+      const isLoading = !state.isLoading;
+      return {
+        ...state,
+        isLoading,
+        isComplete: false,
+        percentage: isLoading ? state.percentage : 0
+      };
+    }
+    case "UPDATE_PERCENTAGE": {
+      //updating percentage value as its loading
+      const { payload } = action;
+      return {
+        ...state,
+        percentage: payload === undefined ? state.percentage + 1 : payload,
+        isComplete: payload === 100 ? true : false
+      };
+    }
+    case "IS_COMPLETE": {
+      //setting spinner to 100% when it complete
+      const { payload } = action;
+      return {
+        ...state,
+        percentage: payload === true ? 100 : state.percentage,
+        isComplete: payload
+      };
+    }
+  }
+}
+
 function App() {
-  const [loading, setLoading] = useState(false);
-  const [percentage, setPercentage] = useState(0);
-  const [spinnerComplete, setSpinnerComplete] = useState(false);
-
-  function startSpinner() {
-    setLoading(true);
-    setSpinnerComplete(false);
-  }
-
-  function stopSpinner() {
-    setLoading(false);
-    setSpinnerComplete(false);
-    setPercentage(0);
-  }
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (percentage === 100) {
-        setPercentage(100);
-        setLoading(false);
-      } else {
-        setPercentage(percentage + 1);
-      }
-    }, 100);
+    let interval;
 
-    // when spinner gets stopped by button press set it back to 0
-    if (loading === false) {
-      setPercentage(0);
-    }
-
-    if (percentage === 100) {
-      setSpinnerComplete(true);
-      setPercentage(0);
-      setLoading(false);
-    }
-
-    return () => {
+    if (state.isLoading) {
+      interval = setInterval(() => {
+        dispatch({
+          type: "UPDATE_PERCENTAGE"
+        });
+      }, 100);
+    } else {
       clearInterval(interval);
-    };
-  });
+    }
 
-  if (spinnerComplete === true) {
-    return (
-      <div className="app">
-        <div className="spinner-container">
-          <h3>Completed!</h3>
-          <Spinner spinnerValue="100" className={"spinner-ring complete"} />
-          <Button onClick={startSpinner} text={"Restart"} />
-        </div>
-      </div>
-    );
-  }
+    return () => clearInterval(interval);
+  }, [state.isLoading]);
 
   return (
     <div className="app">
-      {loading === true ? (
-        <div className="spinner-container active ">
-          <Spinner
-            spinnerValue={percentage}
-            className={"spinner-ring active"}
-          />
-          <Button onClick={stopSpinner} text={"Stop"} />
-        </div>
-      ) : (
-        <div className="spinner-container">
-          <Spinner spinnerValue="0" className={"spinner-ring"} />
-          <Button onClick={startSpinner} text={"Start"} />
-        </div>
-      )}
+      <Spinner
+        percentage={state.percentage}
+        isComplete={state.isComplete}
+        isLoading={state.isLoading}
+      />
+      <Button
+        onClick={() => dispatch({ type: "TOGGLE_LOADING" })}
+        text={state.isLoading ? "Stop" : "Start"}
+      />
     </div>
   );
 }

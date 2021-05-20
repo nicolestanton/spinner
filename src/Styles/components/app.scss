@@ -8,26 +8,5 @@
   justify-content: center;
   align-items: center;
   margin-top: 24px;
-
-  .spinner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    h3 {
-      color: white;
-      font-family: Arial;
-    }
-
-    .active {
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    }
-  }
+  flex-direction: column;
 }
