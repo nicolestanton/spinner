@@ -23,19 +23,12 @@ export function reducer(state, action) {
     case "UPDATE_PERCENTAGE": {
       //updating percentage value as its loading
       const { payload } = action;
+      const nextPercentage = payload || state.percentage + 1;
       return {
         ...state,
-        percentage: payload === undefined ? state.percentage + 1 : payload,
-        isComplete: state.percentage === 100 ? true : false
-      };
-    }
-    case "IS_COMPLETE": {
-      //setting spinner to 100% when it complete
-      const { payload } = action;
-      return {
-        ...state,
-        percentage: payload === true ? 100 : state.percentage,
-        isComplete: payload
+        percentage: payload === undefined ? nextPercentage : payload,
+        isComplete:
+          state.percentage === 100 || nextPercentage === 100 ? true : false
       };
     }
   }
@@ -51,10 +44,14 @@ function App() {
         dispatch({
           type: "UPDATE_PERCENTAGE"
         });
-      }, 100);
+      }, 10);
+    }
+
+    if (state.percentage === 100) {
+      clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [state.isLoading]);
+  }, [state.isLoading, state.percentage]);
 
   return (
     <div className="app">
