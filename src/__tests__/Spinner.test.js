@@ -26,3 +26,18 @@ test("should show 'Waiting' if spinner hasnt started yet", () => {
   const { getByTestId } = render(<Spinner percentage="0" />);
   expect(getByTestId(/spinner-state/i).textContent).toBe("Waiting");
 });
+
+test("should show correct value for spinner", () => {
+  const { getByTestId } = render(
+    <Spinner percentage="16" isLoading="true" isComplete="false" />
+  );
+  expect(getByTestId(/spinner-value/i).textContent).toBe("16%");
+});
+
+test("should show correct value for completed spinner", () => {
+  const { getByTestId } = render(
+    <Spinner percentage="100" isLoading="false" isComplete="true" />
+  );
+  expect(getByTestId(/spinner-value/i).textContent).toBe("100%");
+  expect(getByTestId(/spinner-state/i).textContent).toBe("Completed");
+});
