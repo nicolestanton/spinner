@@ -4,14 +4,14 @@ This project is a replica of the WeTransfer spinner. It is created using React.j
 
 ## Getting Started
 
-Install node
-Run npm install
+- Install node
+- Run npm install
 
 ## Running in development mode:
 
 ### `npm run start`
 
-in terminal
+in terminal\
 Open [http://localhost:8080] to view it in the browser.
 
 ## Create production build:
@@ -24,7 +24,7 @@ in terminal
 
 ### `npm run test`
 
-in terminal
+in terminal\
 Tests are using React Testing Library and Jest as the framework.
 
 ## Deploy to Netlify
@@ -33,7 +33,7 @@ Tests are using React Testing Library and Jest as the framework.
 
 ### `netlify deploy`
 
-in terminal
+in terminal\
 
 Builds the app and the using netlify deploy you can publish the app to be visible in a browser.
 I chose Netlify as I have used it in the past and it is quick and easy to deploy small apps such as this one.

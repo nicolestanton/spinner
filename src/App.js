@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from "react";
 import Button from "./Components/Button";
 import { Spinner } from "./Components/Spinner";
-import Blank from "./";
+
 export const initialState = {
   isLoading: false,
   percentage: 0,
