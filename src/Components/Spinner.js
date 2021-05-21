@@ -13,7 +13,7 @@ export function Spinner(props) {
           <span className="percentage-sign">%</span>
         </span>
         <h3 data-testid="spinner-state">
-          {isComplete ? "Completed!" : isLoading ? "Loading..." : "Waiting"}
+          {isComplete ? "Done!" : isLoading ? "Transferring..." : "Waiting"}
         </h3>
       </div>
     </div>

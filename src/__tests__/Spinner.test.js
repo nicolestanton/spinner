@@ -12,14 +12,9 @@ test("correct percentage value is displayed", () => {
   expect(getByTestId(/spinner-value/i).textContent).toBe("50%");
 });
 
-test("should show 'Completed' if spinner is 100%", () => {
-  const { getByTestId } = render(<Spinner isComplete="true" />);
-  expect(getByTestId(/spinner-state/i).textContent).toBe("Completed!");
-});
-
-test("should show 'Loading' if spinner is in a loading state", () => {
+test("should show 'Transferring' if spinner is in a loading state", () => {
   const { getByTestId } = render(<Spinner isLoading="true" />);
-  expect(getByTestId(/spinner-state/i).textContent).toBe("Loading...");
+  expect(getByTestId(/spinner-state/i).textContent).toBe("Transferring...");
 });
 
 test("should show 'Waiting' if spinner hasnt started yet", () => {
@@ -27,17 +22,17 @@ test("should show 'Waiting' if spinner hasnt started yet", () => {
   expect(getByTestId(/spinner-state/i).textContent).toBe("Waiting");
 });
 
-test("should show correct value for spinner", () => {
+test("should show correct percentage value for spinner", () => {
   const { getByTestId } = render(
     <Spinner percentage="16" isLoading="true" isComplete="false" />
   );
   expect(getByTestId(/spinner-value/i).textContent).toBe("16%");
 });
 
-test("should show correct value for completed spinner", () => {
+test("should show 'Completed' if spinner is 100%", () => {
   const { getByTestId } = render(
     <Spinner percentage="100" isLoading="false" isComplete="true" />
   );
   expect(getByTestId(/spinner-value/i).textContent).toBe("100%");
-  expect(getByTestId(/spinner-state/i).textContent).toBe("Completed!");
+  expect(getByTestId(/spinner-state/i).textContent).toBe("Done!");
 });
